@@ -5,6 +5,7 @@ import org.json.JSONException;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -119,6 +120,7 @@ public class LoginActivity extends Activity {
 		MapleHttpClient.get("users/check_mobile_login", params, new AsyncHttpResponseHandler() {
 			@Override
 			public void onSuccess(int statusCode, String response) {
+				Log.d("MainActivity", "Response: " + response);
 				try {
 					User appUser = new User(response, token);
 					mApp.setUser(appUser);
