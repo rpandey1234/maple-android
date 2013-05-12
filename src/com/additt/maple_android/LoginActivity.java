@@ -18,6 +18,8 @@ import com.loopj.android.http.RequestParams;
 
 public class LoginActivity extends Activity {
 	
+	private static final String TAG = "Login Activity";
+
 	private Session.StatusCallback statusCallback = new SessionStatusCallback();
 
 	private Button mButtonLoginLogout;
@@ -28,7 +30,11 @@ public class LoginActivity extends Activity {
 		setContentView(R.layout.activity_login);
 		
 		// hide action bar for login page
-		getActionBar().hide();
+		try {
+			getActionBar().hide();
+		} catch (NoSuchMethodError e) {
+			Log.d(TAG, "Well, not high enough SDK for action bar so it won't be shown anyways");
+		}
 
 		mButtonLoginLogout = (Button) findViewById(R.id.loginB);
 		mButtonLoginLogout.setOnClickListener(new OnClickListener() {
